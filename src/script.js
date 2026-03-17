@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import SplitType from "split-type";
 import collection from "./collection.js";
+import { initMobile } from "./mobile.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -263,33 +264,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    let lastTouchX = 0;
-    let isTouching = false;
-
     const mobileHint = document.querySelector(".mobile-hint");
 
-    document.addEventListener("touchstart", (e) => {
-        if (!config.isMoblie || isPreviewActive || isTransitioning) return;
-        isTouching = true;
-        lastTouchX = e.touches[0].clientX;
-        
-        if (mobileHint) gsap.to(mobileHint, { opacity: 0, duration: 0.5 });
-    }, { passive: true });
-
-    document.addEventListener("touchmove", (e) => {
-        if (!isTouching || !config.isMoblie || isPreviewActive || isTransitioning) return;
-        
-        const touchX = e.touches[0].clientX;
-        const deltaX = touchX - lastTouchX;
-        lastTouchX = touchX;
-
-        // Rotate the gallery based on horizontal swipe
-        parallaxState.targetZ += deltaX * 0.2;
-    }, { passive: true });
-
-    document.addEventListener("touchend", () => {
-        isTouching = false;
-    });
+    // Initialize mobile logic
+    const updateMobile = initMobile(
+        { parallaxState, transformState, cards, get isPreviewActive() { return isPreviewActive }, get isTransitioning() { return isTransitioning } },
+        config,
+        { mobileHint }
+    );
 
     document.addEventListener("click", () => {
         if (isPreviewActive && !isTransitioning) resetGallery();
@@ -363,10 +345,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function animate() {
         if (!isPreviewActive && !isTransitioning) {
-            // Continuous rotation on mobile when not interacting
-            if (config.isMoblie && !isTouching) {
-                parallaxState.targetZ += 0.25; // Smooth slow rotation
-            }
+            // Use the outsourced mobile logic
+            updateMobile();
 
             const distX = parallaxState.targetX - parallaxState.currentX;
             const distY = parallaxState.targetY - parallaxState.currentY;
@@ -385,33 +365,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             for (let i = 0; i < cards.length; i++) {
                 const state = transformState[i];
-
-                // On mobile, automatically flip cards as they rotate through the front
-                if (config.isMoblie) {
-                    const cardAngleDeg = (state.angle * 180 / Math.PI);
-                    let totalAngle = (cardAngleDeg + parallaxState.currentZ) % 360;
-                    if (totalAngle < 0) totalAngle += 360;
-
-                    // Focus point is the bottom-center (90 degrees)
-                    let diff = Math.abs(totalAngle - 90);
-                    if (diff > 180) diff = 360 - diff;
-
-                    const threshold = 60; // Active zone for the flip effect
-                    if (diff < threshold) {
-                        const factor = Math.pow(1 - (diff / threshold), 1.5);
-                        state.targetRotation = 180 * factor;
-                        state.targetScale = 1 + 0.4 * factor;
-                        state.targetX = (config.cardMoveAmount * 0.5) * factor * state.cosAngle;
-                        state.targetY = (config.cardMoveAmount * 0.5) * factor * state.sinAngle;
-                        state.isAnimating = true;
-                    } else if (state.targetRotation !== 0) {
-                        state.targetRotation = 0;
-                        state.targetScale = 1;
-                        state.targetX = 0;
-                        state.targetY = 0;
-                        state.isAnimating = true;
-                    }
-                }
 
                 if (!state.isAnimating) continue;
 
