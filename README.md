@@ -2,7 +2,7 @@
 
 LUMINA is a high-performance, immersive 3D image gallery inspired by high-end archival exhibition designs. It features a fluid, hover-driven interface built with WebGL principles (implemented via CSS 3D transforms) and the GreenSock Animation Platform (GSAP).
 
-![Lumina Archive Preview](public/images/img1.jpg) <!-- Note: Replace with actual screenshot path if available -->
+![Lumina Archive Preview](public/images/website%20preview%20img.png)
 
 ## ✨ Features
 
