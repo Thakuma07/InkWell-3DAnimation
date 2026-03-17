@@ -5,6 +5,20 @@
     --card-shadow: rgba(0, 0, 0, 0.1);
 }
 
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("./fonts/SpaceGrotesk-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("./fonts/SpaceGrotesk-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -163,7 +177,7 @@ footer a:hover {
     /* Slightly larger */
     font-weight: 500;
     letter-spacing: -0.03em;
-    font-family: "Suisse Intl", "Inter", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     color: var(--text-primary);
 }
 
