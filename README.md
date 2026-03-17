@@ -1,35 +1,39 @@
-# LUMINA | Interactive 3D Image Gallery
+# INKWELL | Progressive 3D Interactive Archive
 
-LUMINA is a high-performance, immersive 3D image gallery inspired by high-end archival exhibition designs. It features a fluid, hover-driven interface built with WebGL principles (implemented via CSS 3D transforms) and the GreenSock Animation Platform (GSAP).
+Inspired by the [Inkwell](https://inkwell.tech/) Intelligence Layer, this project represents a synthesis of architectural precision and fluid digital interaction. It is a high-performance, immersive 3D image gallery that redefines how archives are explored in a web environment.
 
-![Lumina Archive Preview](public/images/website%20preview%20img.png)
+![Inkwell Archive Preview](public/images/website%20preview%20img.png)
+
+## 🖋️ The Vision
+
+Digital archives often feel static and disconnected. Inspired by the **SOTD-winning aesthetics** of premium design systems, Inkwell transforms mathematical coordinate systems into an organic, living interface. It bridges the gap between raw data (images) and human ingenuity through movement.
+
+---
 
 ## ✨ Features
 
-- **Interactive 3D Carousel**: A radial gallery that responds to mouse proximity and movement.
-- **Micro-Interaction System**: Cards flip and scale dynamically based on cursor distance using advanced mathematical proximity detection.
-- **Deep Zoom Preview**: Click any card to transition into a immersive preview mode with silky-smooth GSAP transitions.
-- **High-Performance Architecture**: 
-  - Throttled interaction loops to reduce CPU overhead.
-  - Pre-calculated trigonometry to minimize runtime math.
-  - Squared distance calculations for faster proximity detection.
-  - Hardware-accelerated CSS transforms using backface-visibility and translate3d hardware triggers.
-- **Premium Aesthetics**: A "Paper & Ink" design language featuring a sophisticated off-white palette and high-quality grotesque typography (Suisse Intl / Inter).
+- **Intelligence Layer (Proximity Engine)**: Utilizing squared-distance mathematics to detect cursor/touch proximity, creating a "magnetic" attraction effect that flips and scales elements in real-time.
+- **Architectural 3D Layout**: A radial distribution system that leverages hardware-accelerated CSS 3D transforms for a "Physical Space" feel without the overhead of heavy WebGL libraries.
+- **Micro-Interaction System**: 
+  - **Desktop**: Silky-smooth hover response with lerp-based smoothing.
+  - **Mobile**: Continuous auto-rotation with "Active Zone" flipping—cards intelligently respond as they pass the viewer's focal point.
+- **Deep Zoom Preview**: A high-speed transition system using GSAP and SplitType to reveal metadata and high-resolution imagery with brutalist typographic flair.
+- **Performance-First Design**: Achieving consistent 60+ FPS through expensive math pre-calculation and DOM interaction throttling.
 
 ## 🚀 Tech Stack
 
-- **Vanilla JavaScript (ES6+)**: Core logic and state management.
-- **GSAP (GreenSock Animation Platform)**: Handles complex timeline transitions and lerp-based smoothing.
-- **SplitType**: Used for delicate text entrance animations in preview mode.
-- **CSS 3D Transforms**: Leverages hardware acceleration for ultra-smooth 60+ FPS performance.
+- **Vanilla JavaScript (ES6+)**: Core state management and modular architecture.
+- **GSAP (GreenSock Animation Platform)**: Orchestrating complex 3D timelines and smooth interpolation.
+- **Inter (Variable)** & **Space Grotesk**: Localized premium typography for a state-of-the-art visual identity.
 - **Vite**: Modern frontend tooling for rapid development and optimized builds.
+- **CSS 3D Engine**: Leverages `preserve-3d`, `perspective`, and hardware-accelerated transforms.
 
 ## 🛠️ Installation & Setup
 
 1. **Clone the repository**:
    ```bash
    git clone <repository-url>
-   cd <project-directory>
+   cd inkwell-3d-gallery
    ```
 
 2. **Install dependencies**:
@@ -42,18 +46,13 @@ LUMINA is a high-performance, immersive 3D image gallery inspired by high-end ar
    npm run dev
    ```
 
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
-
 ## 🧠 Performance Optimizations
 
-The gallery is designed to handle dozens of interactive elements simultaneously. Key optimizations include:
+The gallery is engineered to handle massive interactions with minimal CPU/GPU overhead:
 
-- **Mathematical Positioning**: Avoids expensive DOM `getBoundingClientRect` calls by calculating positions mathematically relative to the screen center.
-- **Animation Culling**: Cards only process animation logic when they are "active" (hovered or returning to state), saving processing power for static elements.
-- **CSS Containment**: Uses `contain: layout paint` to isolate element updates, preventing full-page layout reflows during hover events.
+- **Mathematical Positioning**: Eliminates costly `getBoundingClientRect()` calls by using a coordinate-based tracking system relative to the screen center.
+- **Animation Culling**: Only "active" cards process proximity logic, drastically reducing the number of calculations per frame.
+- **Modular Interaction**: Mobile and Desktop logic are decoupled into isolated modules (`src/mobile.js`) for cleaner execution and smaller runtime footprints.
 
 ## 👨‍💻 Author
 
@@ -61,4 +60,4 @@ The gallery is designed to handle dozens of interactive elements simultaneously.
 
 ---
 
-*Experimenting with the boundaries of WebGL-inspired CSS interactions.*
+*“AI is changing the way we approach... we use that same philosophy to change how you approach digital galleries.”*
