@@ -230,9 +230,9 @@ footer a:hover {
 .mobile-hint {
     display: none;
     position: fixed;
-    bottom: 8%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 100;
     font-size: 10px;
     letter-spacing: 0.2em;
@@ -241,6 +241,8 @@ footer a:hover {
     opacity: 0.6;
     pointer-events: none;
     transition: opacity 0.5s ease;
+    text-align: center;
+    width: 200px; /* Constrain width for better centering of multiple words */
 }
 
 @media (max-width: 768px) {

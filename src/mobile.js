@@ -11,13 +11,13 @@ export function initMobile(state, config, components) {
         if (!config.isMoblie || state.isPreviewActive || state.isTransitioning) return;
         isTouching = true;
         lastTouchX = e.touches[0].clientX;
-        
+
         if (mobileHint) gsap.to(mobileHint, { opacity: 0, duration: 0.5 });
     }, { passive: true });
 
     document.addEventListener("touchmove", (e) => {
         if (!isTouching || !config.isMoblie || state.isPreviewActive || state.isTransitioning) return;
-        
+
         const touchX = e.touches[0].clientX;
         const deltaX = touchX - lastTouchX;
         lastTouchX = touchX;
@@ -36,7 +36,7 @@ export function initMobile(state, config, components) {
 
         // Continuous rotation on mobile when not interacting
         if (!isTouching) {
-            parallaxState.targetZ += 0.25; // Smooth slow rotation
+            parallaxState.targetZ += 1; // Smooth slow rotation
         }
 
         // Automatic card flipping as they rotate through the front
