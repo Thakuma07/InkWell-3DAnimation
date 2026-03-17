@@ -363,6 +363,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function animate() {
         if (!isPreviewActive && !isTransitioning) {
+            // Continuous rotation on mobile when not interacting
+            if (config.isMoblie && !isTouching) {
+                parallaxState.targetZ += 0.25; // Smooth slow rotation
+            }
+
             const distX = parallaxState.targetX - parallaxState.currentX;
             const distY = parallaxState.targetY - parallaxState.currentY;
             const distZ = parallaxState.targetZ - parallaxState.currentZ;
