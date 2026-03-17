@@ -1,0 +1,23 @@
+const collection = [
+    { title: "Mailbox", img: "images/img1.jpg" },
+    { title: "Writer's Building", img: "images/img2.jpg" },
+    { title: "Inside Tram", img: "images/img3.jpg" },
+    { title: "Tram", img: "images/img4.jpg" },
+    { title: "Dakshineswar Temple", img: "images/img5.jpg" },
+    { title: "Ricksaw", img: "images/img6.jpg" },
+    { title: "Metropolitan Building", img: "images/img7.jpg" },
+    { title: "College Street", img: "images/img8.jpg" },
+    { title: "Victoria Memorial", img: "images/img9.jpg" },
+    { title: "Durga Puja", img: "images/img10.jpg" },
+    { title: "Rajbari", img: "images/img11.jpg" },
+    { title: "Bagbazar Ghat", img: "images/img12.jpg" },
+    { title: "Chandannagar", img: "images/img13.jpg" },
+    { title: "Metcalfe Hall", img: "images/img14.jpg" },
+    { title: "Kali Maa", img: "images/img15.jpg" },
+    { title: "Howrah Bridge", img: "images/img16.jpg" },
+    { title: "Metro Station", img: "images/img17.jpg" },
+    { title: "Kumurtuli", img: "images/img18.jpg" },
+    { title: "Senior Citizen", img: "images/img19.jpg" },
+    { title: "Satyajit Roy", img: "images/img20.jpg" },
+];
+export default collection;
