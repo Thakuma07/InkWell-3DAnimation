@@ -385,6 +385,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
             for (let i = 0; i < cards.length; i++) {
                 const state = transformState[i];
+
+                // On mobile, automatically flip cards as they rotate through the front
+                if (config.isMoblie) {
+                    const cardAngleDeg = (state.angle * 180 / Math.PI);
+                    let totalAngle = (cardAngleDeg + parallaxState.currentZ) % 360;
+                    if (totalAngle < 0) totalAngle += 360;
+
+                    // Focus point is the bottom-center (90 degrees)
+                    let diff = Math.abs(totalAngle - 90);
+                    if (diff > 180) diff = 360 - diff;
+
+                    const threshold = 60; // Active zone for the flip effect
+                    if (diff < threshold) {
+                        const factor = Math.pow(1 - (diff / threshold), 1.5);
+                        state.targetRotation = 180 * factor;
+                        state.targetScale = 1 + 0.4 * factor;
+                        state.targetX = (config.cardMoveAmount * 0.5) * factor * state.cosAngle;
+                        state.targetY = (config.cardMoveAmount * 0.5) * factor * state.sinAngle;
+                        state.isAnimating = true;
+                    } else if (state.targetRotation !== 0) {
+                        state.targetRotation = 0;
+                        state.targetScale = 1;
+                        state.targetX = 0;
+                        state.targetY = 0;
+                        state.isAnimating = true;
+                    }
+                }
+
                 if (!state.isAnimating) continue;
 
                 const dRot = state.targetRotation - state.currentRotation;
