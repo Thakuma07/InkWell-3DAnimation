@@ -263,6 +263,34 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", handleResize);
     handleResize();
 
+    let lastTouchX = 0;
+    let isTouching = false;
+
+    const mobileHint = document.querySelector(".mobile-hint");
+
+    document.addEventListener("touchstart", (e) => {
+        if (!config.isMoblie || isPreviewActive || isTransitioning) return;
+        isTouching = true;
+        lastTouchX = e.touches[0].clientX;
+        
+        if (mobileHint) gsap.to(mobileHint, { opacity: 0, duration: 0.5 });
+    }, { passive: true });
+
+    document.addEventListener("touchmove", (e) => {
+        if (!isTouching || !config.isMoblie || isPreviewActive || isTransitioning) return;
+        
+        const touchX = e.touches[0].clientX;
+        const deltaX = touchX - lastTouchX;
+        lastTouchX = touchX;
+
+        // Rotate the gallery based on horizontal swipe
+        parallaxState.targetZ += deltaX * 0.2;
+    }, { passive: true });
+
+    document.addEventListener("touchend", () => {
+        isTouching = false;
+    });
+
     document.addEventListener("click", () => {
         if (isPreviewActive && !isTransitioning) resetGallery();
     });

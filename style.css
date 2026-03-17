@@ -81,6 +81,16 @@ footer {
     pointer-events: none;
 }
 
+@media (max-width: 768px) {
+    nav, footer {
+        padding: 1.5em 2em;
+    }
+    
+    .brand p, .nav-links p, .footer-center p, .footer-left p {
+        display: none;
+    }
+}
+
 nav *,
 footer * {
     pointer-events: auto;
@@ -161,6 +171,13 @@ footer a:hover {
     will-change: transform;
 }
 
+@media (max-width: 768px) {
+    .gallery {
+        width: 400px;
+        height: 400px;
+    }
+}
+
 .card {
     position: absolute;
     width: 45px;
@@ -195,8 +212,39 @@ footer a:hover {
     color: var(--text-primary);
 }
 
+@media (max-width: 768px) {
+    .title-container p {
+        font-size: 28px;
+    }
+    .title-container {
+        bottom: 15%;
+    }
+}
+
 .word {
     position: relative;
     display: inline-block;
     will-change: transform;
+}
+
+.mobile-hint {
+    display: none;
+    position: fixed;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .mobile-hint {
+        display: block;
+    }
 }
